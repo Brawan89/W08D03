@@ -42,7 +42,7 @@ const saveEmail = email.toLowerCase();
 
   userModel
     .findOne({ email: saveEmail })
-    .then(async (result) => {
+    .then( async (result) => {
       if (result) {
         if (result.email == email) {
             const hashedPass = await bcrypt.compare(password, result.password);
@@ -70,4 +70,16 @@ const saveEmail = email.toLowerCase();
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports = { register , login } 
+//get all users
+const getAllUsers = (req, res) => {
+  userModel
+  .find({})
+  .then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((err) => {
+    res.status(400).json(err);
+  });
+};
+
+module.exports = { register , login , getAllUsers} 

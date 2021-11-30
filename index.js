@@ -5,6 +5,11 @@ require("dotenv").config();
 
 require("./db");
 
+
+//role
+const roleRouter = require("./Routers/Routes/role");
+app.use(roleRouter);
+
 //user
 const userRouter = require("./Routers/Routes/user");
 app.use(userRouter);
