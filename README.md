@@ -6,9 +6,9 @@
 - Todos
 
 ## Library:
-express
-mongoose
-bcrypt
-dotenv
-jsonwebtoken
-nodemon
+- express
+- mongoose
+- bcrypt
+- dotenv
+- jsonwebtoken
+- nodemon
