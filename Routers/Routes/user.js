@@ -7,6 +7,8 @@ const authorization = require("../middleware/authorization");
 
 userRouter.post("/register" , register);
 userRouter.post("/login" , login);
+
+// admin -> role
 userRouter.get("/allusers", authentication, authorization, getAllUsers);
 
 

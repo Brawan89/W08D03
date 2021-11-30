@@ -14,6 +14,10 @@ app.use(roleRouter);
 const userRouter = require("./Routers/Routes/user");
 app.use(userRouter);
 
+//task
+const taskRouter = require("./Routers/Routes/task");
+app.use(taskRouter);
+
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT , () => {
