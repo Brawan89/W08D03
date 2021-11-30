@@ -1,13 +1,28 @@
 const userModel = require("./../../db/models/user");
 
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
+
+
+const SALT = Number(process.env.SALT);
+const secret = process.env.SECRET_KEY;
+
 //create users
-const register = (req, res) => {
-  const { email, password, role } = req.body;
+const register = async (req, res) => {
+
+  const { email, password } = req.body;
+    // email -> lowerCase
+  const saveEmail = email.toLowerCase();
+    //encryption password
+  const savedPass = await bcrypt.hash(password, SALT);
+  
   const newUser = new userModel({
-    email,
-    password,
-    role,
+    email: saveEmail,
+    password: savedPass,
   });
+
   newUser
     .save()
     .then((result) => {
@@ -22,14 +37,26 @@ const register = (req, res) => {
 
 //login
 const login = (req, res) => {
-  const { email, password } = req.body;
+const { email, password } = req.body;
+const saveEmail = email.toLowerCase();
+
   userModel
-    .findOne({ email })
-    .then((result) => {
+    .findOne({ email: saveEmail })
+    .then(async (result) => {
       if (result) {
         if (result.email == email) {
-          if (result.password == password) {
-            res.status(200).json(result);
+            const hashedPass = await bcrypt.compare(password, result.password);
+            console.log(hashedPass);
+
+            const payload = {
+                email,
+              };
+
+          if (hashedPass) {
+            const token = await jwt.sign(payload, secret);
+            console.log(hashedPass);
+
+            res.status(200).json({result , token});
           } else {
             res.status(400).json("invalid email or passowrd");
           }
@@ -37,7 +64,7 @@ const login = (req, res) => {
           res.status(400).json("invalid email or passowrd");
         }
       } else {
-        res.status(400).json("email does not exist");
+        res.status(404).json("email does not exist");
       }
     })
     .catch((err) => res.status(400).json(err));
