@@ -28,8 +28,8 @@ const getAllTasks = (req, res) => {
         res.status(400).json(err);
       });
   };
-///////////////////////////////////////
-// git one task by id
+
+  // git one task by id
 const getTaskById = (req, res) => {
     const { id } = req.body; 
     taskModel
@@ -46,7 +46,7 @@ const getTaskById = (req, res) => {
       });
   };
 
-///////////////////////////////////////////////////////
+
 //update task (not delete)
 const updateTask = (req, res) => {
     const { name } = req.body;
@@ -67,8 +67,8 @@ const updateTask = (req, res) => {
           res.status(400).json(err);
         });
   };
-/////////////////////////////////////////
 
+//
 const deleteTask = (req, res) => {
   
       const { id } = req.params;
@@ -90,5 +90,4 @@ const deleteTask = (req, res) => {
    
   };
 
-///////////////////////////////////////
 module.exports = { addNewTask , getAllTasks , getTaskById , updateTask , deleteTask}
