@@ -33,7 +33,7 @@ const getAllTasks = (req, res) => {
 const getTaskById = (req, res) => {
     const { id } = req.body; 
     taskModel
-      .findById({ _id: id })
+      .find({ _id: id , user: req.token.id })
       .then((result) => {
         if (result) {
         res.status(200).json(result);
