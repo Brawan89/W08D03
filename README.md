@@ -78,4 +78,7 @@ Todos & Register & Login with  Token
 
 ![ERD1](https://user-images.githubusercontent.com/92247926/145243186-146915c9-2975-4cba-a82b-26092982b8d1.png)
 
+## UML Diagram
+![uml](https://user-images.githubusercontent.com/92247926/145261501-aa405930-e0e1-420c-9c65-020fe352d102.png)
+
 
