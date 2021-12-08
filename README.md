@@ -32,15 +32,15 @@ Todos & Register & Login with  Token
   > creatRole
 
   - task.js
-
-  > addNewTask, 
-  > getAllTasks, 
-  > getTaskById, 
-  > getUsertodo, 
-  > updateTask, 
-  > deleteTask, 
-  > deleteTaskByUser, 
-
+```
+ -  addNewTask, 
+ -  getAllTasks, 
+ -  getTaskById, 
+ -  getUsertodo, 
+ -  updateTask, 
+ -  deleteTask, 
+ -  deleteTaskByUser, 
+```
   - user.js
 
  > register
