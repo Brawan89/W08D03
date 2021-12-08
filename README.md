@@ -42,37 +42,38 @@ Todos & Register & Login with  Token
  -  deleteTaskByUser, 
 ```
   - user.js
-
- > register
- > login
- > getAllUsers
-
+```
+ - register
+ - login
+ - getAllUsers
+```
 2. Midleware
-
+```
   - authentication.js
   - authorization.js
-
+```
 3. Routes
-  - role.js 
-  > post("/createRole")
-  > get("/roles")
+```
+  1. role.js 
+  - post("/createRole")
+  - get("/roles")
 
-  - task.js
+  2. task.js
 
-  > post("/createTask")
-  > get("/allTasks")
-  > delete("/deltask/:id")
-  > put("/updateTask/:id")
-  > get("/getUsertodo/:user")
-  > get("/task")
-  > delete("/deleteTaskByUser/:id")
+  - post("/createTask")
+  - get("/allTasks")
+  - delete("/deltask/:id")
+  - put("/updateTask/:id")
+  - get("/getUsertodo/:user")
+  - get("/task")
+  - delete("/deleteTaskByUser/:id")
 
-  - user.js
+  3. user.js
 
-  > post("/register")
-  > post("/login")
-  > get("/allusers")
-
+  - post("/register")
+  - post("/login")
+  - get("/allusers")
+```
 ## ER Diagram
 
 ![ERD1](https://user-images.githubusercontent.com/92247926/145243186-146915c9-2975-4cba-a82b-26092982b8d1.png)
