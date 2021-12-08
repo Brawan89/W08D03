@@ -33,13 +33,13 @@ Todos & Register & Login with  Token
 
   - task.js
 
-  > addNewTask
-  > getAllTasks
-  > getTaskById
-  > getUsertodo
-  > updateTask
-  > deleteTask
-  > deleteTaskByUser
+  > addNewTask, 
+  > getAllTasks, 
+  > getTaskById, 
+  > getUsertodo, 
+  > updateTask, 
+  > deleteTask, 
+  > deleteTaskByUser, 
 
   - user.js
 
@@ -74,3 +74,7 @@ Todos & Register & Login with  Token
   > get("/allusers")
 
 ## ER Diagram
+
+![ERD1](https://user-images.githubusercontent.com/92247926/145243186-146915c9-2975-4cba-a82b-26092982b8d1.png)
+
+
