@@ -4,17 +4,27 @@ const {
   addNewTask,
   getAllTasks,
   getTaskById,
+  getUsertodo,
   updateTask,
   deleteTask,
+  deleteTaskByUser,
 } = require("./../Controllers/task");
 
 const authentication = require("./../middleware/authentication");
 const authorization = require("./../middleware/authorization");
 
-taskRouter.get("/allTasks", authentication, authorization , getAllTasks);
+//user -> add , get , delete , update (task)
+taskRouter.post("/createTask", authentication, addNewTask);
+taskRouter.get("/allTasks", authentication, getAllTasks);
+taskRouter.delete("/deltask/:id", authentication, deleteTask);
+taskRouter.put("/updateTask/:id", authentication, updateTask);
+//
+taskRouter.get("/getUsertodo/:user", authentication, getUsertodo);
+
+
+// taskRouter.get("/allTasks", authentication, authorization , getAllTasks);
 taskRouter.get("/task", authentication, authorization , getTaskById);
-taskRouter.post("/createTask", authentication, authorization , addNewTask);
-taskRouter.put("/task/:id", authentication, authorization ,updateTask);
-taskRouter.delete("/deltask/:id", authentication, authorization ,deleteTask);
+// taskRouter.put("/task/:id", authentication, authorization ,updateTask);
+taskRouter.delete("/deleteTaskByUser/:id", authentication, authorization ,deleteTaskByUser);
 
 module.exports = taskRouter;

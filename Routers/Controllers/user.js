@@ -5,22 +5,21 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-
 const SALT = Number(process.env.SALT);
 const secret = process.env.SECRET_KEY;
 
 //create users
 const register = async (req, res) => {
-
-  const { email, password } = req.body;
-    // email -> lowerCase
+  const { email, password , role} = req.body;
+  // email -> lowerCase
   const saveEmail = email.toLowerCase();
-    //encryption password
+  //encryption password
   const savedPass = await bcrypt.hash(password, SALT);
-  
+
   const newUser = new userModel({
     email: saveEmail,
     password: savedPass,
+    role,
   });
 
   newUser
@@ -34,29 +33,29 @@ const register = async (req, res) => {
     });
 };
 
-
 //login
 const login = (req, res) => {
-const { email, password } = req.body;
-const saveEmail = email.toLowerCase();
+  const { email, password } = req.body;
+  const saveEmail = email.toLowerCase();
 
   userModel
     .findOne({ email: saveEmail })
-    .then( async (result) => {
+    .then(async (result) => {
       if (result) {
         if (result.email == email) {
-            const hashedPass = await bcrypt.compare(password, result.password);
-            console.log(hashedPass);
+          const hashedPass = await bcrypt.compare(password, result.password);
+          console.log(hashedPass);
 
-            const payload = {
-                email,
-              };
+          const payload = {
+            // id,
+            email,
+          };
 
           if (hashedPass) {
             const token = await jwt.sign(payload, secret);
             console.log(hashedPass);
 
-            res.status(200).json({result , token});
+            res.status(200).json({ result, token });
           } else {
             res.status(400).json("invalid email or passowrd");
           }
@@ -73,13 +72,13 @@ const saveEmail = email.toLowerCase();
 //get all users
 const getAllUsers = (req, res) => {
   userModel
-  .find({})
-  .then((result) => {
-    res.status(200).json(result);
-  })
-  .catch((err) => {
-    res.status(400).json(err);
-  });
+    .find({})
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 };
 
-module.exports = { register , login , getAllUsers} 
+module.exports = { register, login, getAllUsers };

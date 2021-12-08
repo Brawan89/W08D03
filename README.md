@@ -22,4 +22,55 @@ Todos & Register & Login with  Token
 3. Task
   - name , isDel and useId.
 
+## Routers:
 
+1. Controllers
+
+  - role.js 
+
+  > getRoles
+  > creatRole
+
+  - task.js
+
+  > addNewTask
+  > getAllTasks
+  > getTaskById
+  > getUsertodo
+  > updateTask
+  > deleteTask
+  > deleteTaskByUser
+
+  - user.js
+
+ > register
+ > login
+ > getAllUsers
+
+2. Midleware
+
+  - authentication.js
+  - authorization.js
+
+3. Routes
+  - role.js 
+  > post("/createRole")
+  > get("/roles")
+
+  - task.js
+
+  > post("/createTask")
+  > get("/allTasks")
+  > delete("/deltask/:id")
+  > put("/updateTask/:id")
+  > get("/getUsertodo/:user")
+  > get("/task")
+  > delete("/deleteTaskByUser/:id")
+
+  - user.js
+
+  > post("/register")
+  > post("/login")
+  > get("/allusers")
+
+## ER Diagram

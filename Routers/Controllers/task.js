@@ -2,10 +2,10 @@ const taskModel = require("./../../db/Models/tasks");
 
 //create task
 const addNewTask = (req, res) => {
-  const { name } = req.body;
+  const { name , user } = req.body;
   const newTask = new taskModel({
     name,
-    user: req.token.id,
+    user,
   });
   newTask
     .save()
@@ -29,7 +29,7 @@ const getAllTasks = (req, res) => {
       });
   };
 
-  // git one task by id
+  // get one task by id
 const getTaskById = (req, res) => {
     const { id } = req.body; 
     taskModel
@@ -39,6 +39,23 @@ const getTaskById = (req, res) => {
         res.status(200).json(result);
         } else {
             res.status(404).json("task dose not exist");
+        }
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+  const getUsertodo = (req, res) => {
+    const { user } = req.params;
+    taskModel
+      .find({ user, isDel: false })
+      .populate("user")
+      .then((result) => {
+        if (result) {
+          res.status(200).json(result);
+        } else {
+          res.status(400).json("This post not found");
         }
       })
       .catch((err) => {
@@ -90,4 +107,26 @@ const deleteTask = (req, res) => {
    
   };
 
-module.exports = { addNewTask , getAllTasks , getTaskById , updateTask , deleteTask}
+  const deleteTaskByUser = (req, res) => {
+  
+    const { id } = req.params;
+   const { users } = req.body;
+
+    taskModel
+      .findOneAndUpdate(
+        { _id: id, users , isDel: false },
+     { $set: { isDel: true }})
+      .then((result) => {
+        if (result) {
+          res.status(200).json(result);
+        } else {
+          res.status(404).json(" task not found! ");
+        }
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+ 
+};
+
+module.exports = { addNewTask , getAllTasks , getTaskById, getUsertodo , updateTask , deleteTask , deleteTaskByUser}
