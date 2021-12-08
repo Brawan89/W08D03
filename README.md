@@ -16,11 +16,11 @@ Todos & Register & Login with  Token
 
 ## Schema:
 1. Role
-  - role and permission.
+    ( role and permission )
 2. User
-  - email , password and role.
+   ( email , password and role )
 3. Task
-  - name , isDel and useId.
+   ( name , isDel and useId )
 
 ## Routers:
 
